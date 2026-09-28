@@ -1,0 +1,30 @@
+<div class="card p-5 shadow-sm border-0 bg-white rounded-3 animate-fade-in">
+  <h1 class="display-5 text-dark fw-bold mb-3">About the Architecture</h1>
+  <p class="lead text-muted">
+    Why engineer a massive tech layer when three files can change the world?
+    This application acts as a blueprint demonstration for your blog readers.
+  </p>
+
+  <div class="row g-4 mt-2">
+    <div class="col-md-6">
+      <div class="p-4 bg-light rounded border">
+        <h4 class="text-primary fw-semibold">💾 Persistent Capability</h4>
+        <p class="small text-muted mb-0">
+          The site hooks into a tiny, local <code>threepager.db</code> file.
+          Data mutations can execute concurrently safely without system bloat or
+          expensive cloud billing overhead.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-4 bg-light rounded border">
+        <h4 class="text-success fw-semibold">⚡ Dynamic Scaling</h4>
+        <p class="small text-muted mb-0">
+          Need a feature update? You write normal HTML inside the server
+          templates. The frontend engine reads changes automatically without
+          forcing clients to compile asset packages.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Minimalist Stack PoC</title>
+    <!-- Bootstrap 5 CSS for responsive layout -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <!-- Custom styling -->
+    <link rel="stylesheet" href="style/styles.css" />
+    <!-- Core htmx library -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js"
+      integrity="sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="d-flex flex-column min-vh-overflow-hidden min-vh-100 bg-light">
+    <!-- Responsive Bootstrap Header Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <!-- Brand Logo from img/ folder -->
+        <a
+          class="navbar-brand d-flex align-items-center"
+          href="#"
+          hx-get="/client/home.html"
+          hx-target="#main-content"
+        >
+          <img
+            src="/img/logo.png"
+            alt="Logo"
+            height="30"
+            class="d-inline-block align-text-top me-2"
+          />
+          <span>3-Pager PoC</span>
+        </a>
+
+        <!-- Mobile Hamburger Button Toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- SPA Interactivity: htmx handles all navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                hx-get="/client/home.html"
+                hx-target="#main-content"
+                hx-push-url="true"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                hx-get="/client/about.html"
+                hx-target="#main-content"
+                hx-push-url="true"
+                >About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                hx-get="/client/contact.html"
+                hx-target="#main-content"
+                hx-push-url="true"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container Target: Where pages swap smoothly without full reloads -->
+    <main
+      id="main-content"
+      class="container my-5 flex-grow-1"
+      hx-get="/client/home.html"
+      hx-trigger="load"
+      hx-swap="innerHTML"
+    >
+      <!-- The home.html content will inject here on page load -->
+    </main>
+
+    <!-- Dynamic Footer Layout -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto shadow-lg">
+      <div class="container">
+        <p class="mb-0">
+          &copy;
+          <span
+            hx-get="/api/backend.php?action=get_year"
+            hx-trigger="load"
+            hx-swap="outerHTML"
+            >2026</span
+          >
+          The Minimalist Stack |
+          <a
+            href="#"
+            class="text-info ms-2"
+            hx-get="/client/admin/dashboard.html"
+            hx-target="#main-content"
+          >
+            Admin Hub
+          </a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle for mobile hamburger menu toggle animations -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

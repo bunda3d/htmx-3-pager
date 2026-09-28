@@ -1,0 +1,42 @@
+<!-- client/admin/dashboard.html -->
+<div
+  class="card p-5 border-primary bg-light shadow-sm rounded-3 animate-fade-in"
+>
+  <h1 class="fw-bold text-primary mb-3">Administrative Dashboard</h1>
+  <h3>Wouldn't it be great to have an admin space here?</h3>
+  <p>I suppose we'd expect:</p>
+  <ul>
+    <li>Role-based access control (RBAC) system with an auth form approval</li>
+    <li>Ability to view/export/print records added to the database</li>
+    <li>
+      Maybe an option to send newsletter email files to a list of customers?
+    </li>
+  </ul>
+  <h3>
+    For now, let's settle for demonstrating we could review records from the
+    database.
+  </h3>
+
+  <hr class="my-4" />
+  <p class="lead">
+    Browse saved contact requests. Results are paginated at 25 records per page.
+  </p>
+  <section
+    id="dashboard-data"
+    hx-get="/api/backend.php?action=admin_data"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+  >
+    <p class="text-muted">Loading records...</p>
+  </section>
+
+  <div class="mt-4">
+    <button
+      class="btn btn-outline-secondary"
+      hx-get="../client/home.html"
+      hx-target="#main-content"
+    >
+      Return Home
+    </button>
+  </div>
+</div>
