@@ -3,7 +3,7 @@
 
   <div id="form-wrapper">
     <form
-      hx-post="/api/backend.php?action=submit_lead"
+      hx-post="api/backend.php?action=submit_lead"
       hx-target="#form-wrapper"
       hx-swap="outerHTML"
       class="needs-validation"
@@ -58,7 +58,7 @@
           id="salesCall"
           name="sales_call"
           value="1"
-          hx-post="/api/backend.php?action=toggle_phone"
+          hx-post="api/backend.php?action=toggle_phone"
           hx-target="#conditional-phone-container"
         />
         <label class="form-check-label fw-medium" for="salesCall"

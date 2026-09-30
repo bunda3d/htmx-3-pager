@@ -208,7 +208,7 @@ switch ($action) {
                 <li class="page-item' . $active . '">
                     <a
                         class="page-link" href="#"
-                        hx-get="/api/backend.php?action=admin_data&amp;p=' . $pageNumber . '"
+                        hx-get="api/backend.php?action=admin_data&amp;p=' . $pageNumber . '"
                         hx-target="#dashboard-data"
                         hx-swap="innerHTML"'
                         . ($pageNumber === $page ? ' aria-current="page"' : '') . '>'
