@@ -21,7 +21,25 @@ function obfuscateEmail($email) {
 }
 
 switch ($action) {
-    
+    // Router
+    case 'page':
+        $pages = [
+            'home' => __DIR__ . '/../client/home.html',
+            'about' => __DIR__ . '/../client/about.html',
+            'contact' => __DIR__ . '/../client/contact.html',
+            'admin' => __DIR__ . '/../client/admin/dashboard.html',
+        ];
+
+        $page = $_GET['page'] ?? 'home';
+
+        if (!isset($pages[$page])) {
+            http_response_code(404);
+            echo '<div class="alert alert-danger">Page not found.</div>';
+            break;
+        }
+
+        readfile($pages[$page]);
+        break;
     // Dynamic Timestamp Generation
     case 'get_year':
         echo date("Y");
@@ -223,4 +241,3 @@ switch ($action) {
         }
         break;
 }
-

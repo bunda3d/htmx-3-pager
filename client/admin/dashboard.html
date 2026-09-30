@@ -6,16 +6,18 @@
   <h3>Wouldn't it be great to have an admin space here?</h3>
   <p>I suppose we'd expect:</p>
   <ul>
-    <li>Role-based access control (RBAC) system with an auth form approval</li>
+    <li>
+      Role-based access control (RBAC) system requiring auth form approval
+    </li>
     <li>Ability to view/export/print records added to the database</li>
     <li>
       Maybe an option to send newsletter email files to a list of customers?
     </li>
   </ul>
-  <h3>
+  <h4>
     For now, let's settle for demonstrating we could review records from the
     database.
-  </h3>
+  </h4>
 
   <hr class="my-4" />
   <p class="lead">
@@ -33,8 +35,9 @@
   <div class="mt-4">
     <button
       class="btn btn-outline-secondary"
-      hx-get="../client/home.html"
+      hx-get="api/backend.php?action=page&amp;page=home"
       hx-target="#main-content"
+      hx-push-url="#home"
     >
       Return Home
     </button>

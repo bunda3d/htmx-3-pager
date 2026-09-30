@@ -60,30 +60,30 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                href="#"
-                hx-get="client/home.html"
+                href="#home"
+                hx-get="api/backend.php?action=page&amp;page=home"
                 hx-target="#main-content"
-                hx-push-url="false"
+                hx-push-url="#home"
                 >Home</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                href="#"
-                hx-get="client/about.html"
+                href="#about"
+                hx-get="api/backend.php?action=page&amp;page=about"
                 hx-target="#main-content"
-                hx-push-url="false"
+                hx-push-url="#about"
                 >About</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                href="#"
-                hx-get="client/contact.html"
+                href="#contact"
+                hx-get="api/backend.php?action=page&amp;page=contact"
                 hx-target="#main-content"
-                hx-push-url="false"
+                hx-push-url="#contact"
                 >Contact</a
               >
             </li>
@@ -96,11 +96,11 @@
     <main
       id="main-content"
       class="container my-5 flex-grow-1"
-      hx-get="client/home.html"
+      hx-get="api/backend.php?action=page&amp;page=home"
       hx-trigger="load"
       hx-swap="innerHTML"
     >
-      <!-- The home.html content will inject here on page load -->
+      <!-- Page fragment loads here -->
     </main>
 
     <!-- Dynamic Footer Layout -->
@@ -116,22 +116,36 @@
           >
           The Minimalist Stack |
           <a
-            href="#"
+            href="#admin"
             class="text-info ms-2"
-            hx-get="client/admin/dashboard.html"
+            hx-get="api/backend.php?action=page&amp;page=admin"
             hx-target="#main-content"
+            hx-push-url="#admin"
           >
             Admin Hub
           </a>
         </p>
       </div>
     </footer>
-
     <!-- Bootstrap JS Bundle for mobile hamburger menu toggle animations -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <!-- Routing Logic: set initial page based on URL hash to ensure correct content loads on page refresh -->
+    <script>
+      const allowedPages = new Set(["home", "about", "contact", "admin"]);
+      const requestedPage = window.location.hash.slice(1);
+      const initialPage = allowedPages.has(requestedPage)
+        ? requestedPage
+        : "home";
+      document
+        .getElementById("main-content")
+        .setAttribute(
+          "hx-get",
+          `api/backend.php?action=page&page=${initialPage}`,
+        );
+    </script>
   </body>
 </html>
