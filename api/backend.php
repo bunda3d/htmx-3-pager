@@ -14,14 +14,18 @@ function obfuscateEmail($email) {
     $name  = $parts[0];
     $domain = $parts[1];
     
-    $obscuredName = (strlen($name) > 3) ? substr($name, 0, 3) . '***' : substr($name, 0, 1) . '***';
-    $obscuredDomain = (strlen($domain) > 4) ? substr($domain, 0, 2) . '***' . substr($domain, -3) : $domain;
+    $obscuredName = (strlen($name) > 3)
+        ? substr($name, 0, 3) . '***'
+        : substr($name, 0, 1) . '***';
+    $obscuredDomain = (strlen($domain) > 4)
+        ? substr($domain, 0, 2) . '***' . substr($domain, -3)
+        : $domain;
     
     return $obscuredName . '@' . $obscuredDomain;
 }
 
 switch ($action) {
-    // Router
+    // Router → Page Fragment Loader
     case 'page':
         $pages = [
             'home' => __DIR__ . '/../client/home.html',
@@ -115,8 +119,6 @@ switch ($action) {
                 <p class="mb-0">Thanks for experimenting with the architecture, <strong>' . $name . '</strong>. A confirmation message payload has been sent to the office admin.</p>
             </div>';
         break;
-
-
 
     // Admin Dashboard Mockup Teaser
     case 'admin_data':
@@ -240,4 +242,10 @@ switch ($action) {
             </nav>';
         }
         break;
-}
+
+    // Default = 404 Response
+    default:
+        http_response_code(404);
+        echo '<div class="alert alert-danger">Unknown action.</div>';
+        break;
+    }
