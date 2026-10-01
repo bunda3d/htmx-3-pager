@@ -1,27 +1,69 @@
 <div class="card p-5 shadow-sm border-0 bg-white rounded-3 animate-fade-in">
-  <h1 class="display-4 text-primary fw-bold mb-3">
-    Welcome to the Future of Simple Web
-  </h1>
+  <h1 class="display-4 text-primary fw-bold mb-3">✨ Simple is Beautiful</h1>
+  <h2 class="h3 mb-4">
+    This small <abbr title="Proof of Concept">PoC</abbr> web app demonstrates a
+    lightweight "3-pager" <abbr title="Single Page Application">SPA</abbr> with
+    minimal tech stack
+  </h2>
   <p class="lead text-muted">
-    This is a fully reactive, high-performance 3-page website mock. It looks and
-    feels exactly like a heavy Single Page Application (SPA), but operates
-    entirely on top of plain, native HTML fragments.
+    HTML fragments load seamlessly into a responsive shared page with navbar,
+    enabling smooth navigation and dynamic content updates without a full page
+    reload. It demonstrates page navigation, a contact form, and SQLite-backed
+    record storage without a JavaScript build pipeline.
   </p>
   <hr class="my-4" />
-  <h3 class="h4 text-secondary mb-3">🚀 Key PoC Architectural Wins:</h3>
+  <h2 class="text-primary mb-4">🛠️ Technology Stack</h2>
+  <ul class="list-group list-group-flush mb-2">
+    <h3 class="h4 text-primary border border-primary rounded p-2">
+      ⚙️&nbsp;Backend
+    </h3>
+    <li class="list-group-item bg-transparent px-0">
+      <b>PHP</b> → API / Data Access / Business Logic
+    </li>
+    <li class="list-group-item bg-transparent px-0">
+      <b>SQLite</b> → Data Store
+    </li>
+  </ul>
+  <ul class="list-group list-group-flush mb-2">
+    <h3 class="h4 text-primary border border-primary rounded p-2">
+      🖥️&nbsp;Frontend
+    </h3>
+    <li class="list-group-item bg-transparent px-0"><b>HTML</b> → Markup</li>
+    <li class="list-group-item bg-transparent px-0"><b>CSS</b> → Styling</li>
+    <li class="list-group-item bg-transparent px-0">
+      <b>JS</b> → Client-side Interactivity
+    </li>
+  </ul>
+  <ul class="list-group list-group-flush mb-2">
+    <h3 class="h4 text-primary border border-primary rounded p-2">
+      📦&nbsp;Libraries
+    </h3>
+    <li class="list-group-item bg-transparent px-0">
+      <b>htmx</b> → AJAX and DOM Manipulation
+    </li>
+    <li class="list-group-item bg-transparent px-0">
+      <b>Bootstrap 5</b> → Responsive Design
+    </li>
+  </ul>
+
+  <hr class="mb-4" />
+  <h2 class="text-primary mb-3">🚀 Architectural Items</h2>
   <ul class="list-group list-group-flush mb-4">
     <li class="list-group-item bg-transparent px-0">
-      ✅ <strong>Zero JavaScript Build Chains:</strong> No Node.js, Webpack,
-      Vite, or npm installs required.
+      ✅ <strong>Fragment navigation:</strong> htmx requests HTML from PHP and
+      replaces the page content without reloading the whole shell.
     </li>
     <li class="list-group-item bg-transparent px-0">
-      ✅ <strong>Seamless DOM Swaps:</strong> Navigating pages replaces
-      individual page sections instead of forcing entire browser window
-      refreshes.
+      ✅ <strong>Contact requests:</strong> PHP handles form submissions and
+      saves records to SQLite.
     </li>
     <li class="list-group-item bg-transparent px-0">
-      ✅ <strong>Total Server Control:</strong> Interactivity is entirely driven
-      by simple server-emitted layouts.
+      ✅ <strong>Responsive layout:</strong> Bootstrap provides the layout and
+      navbar behavior.
+    </li>
+    <li class="list-group-item bg-transparent px-0">
+      ✅ <strong>No frontend build step:</strong> the page fragments can be
+      edited as HTML; PHP serves the dynamic responses.
     </li>
   </ul>
   <div>

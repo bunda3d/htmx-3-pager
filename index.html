@@ -135,6 +135,7 @@
     ></script>
     <!-- Routing Logic: set initial page based on URL hash to ensure correct content loads on page refresh -->
     <script>
+      // Update set of allowed pages as needed
       const allowedPages = new Set(["home", "about", "contact", "admin"]);
       const requestedPage = window.location.hash.slice(1);
       const initialPage = allowedPages.has(requestedPage)
