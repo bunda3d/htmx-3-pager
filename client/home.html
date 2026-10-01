@@ -12,6 +12,7 @@
     record storage without a JavaScript build pipeline.
   </p>
   <hr class="my-4" />
+
   <h2 class="text-primary mb-4">🛠️ Technology Stack</h2>
   <ul class="list-group list-group-flush mb-2">
     <h3 class="h4 text-primary border border-primary rounded p-2">
@@ -45,10 +46,10 @@
       <b>Bootstrap 5</b> → Responsive Design
     </li>
   </ul>
-
   <hr class="mb-4" />
+
   <h2 class="text-primary mb-3">🚀 Architectural Items</h2>
-  <ul class="list-group list-group-flush mb-4">
+  <ul class="list-group list-group-flush mb-3">
     <li class="list-group-item bg-transparent px-0">
       ✅ <strong>Fragment navigation:</strong> htmx requests HTML from PHP and
       replaces the page content without reloading the whole shell.
@@ -65,7 +66,29 @@
       ✅ <strong>No frontend build step:</strong> the page fragments can be
       edited as HTML; PHP serves the dynamic responses.
     </li>
+    <li class="list-group-item bg-transparent px-0">
+      ✅ <strong>Maintainability & Portability:</strong> Most sites are
+      WordPress, also built on PHP | JS | HTML | CSS. More web devs know the
+      stack & most hosting plans can run the app.
+    </li>
+    <li class="list-group-item bg-transparent px-0">
+      ✅ <strong>Simplicity:</strong> a dead-simple file structure makes
+      implementation easier.
+    </li>
   </ul>
+  <hr class="mb-4" />
+
+  <div class="mb-4">
+    <h2 class="text-primary mb-4">🗂️ File Structure</h2>
+    <p class="border border-primary rounded p-2">
+      🧱<strong> What a simple full-stack app looks like: </strong> the
+      frontend, backend, and database of this 3-pager are all here in this
+      handful of files.
+    </p>
+    <img class="img-fluid d-block" src="img/file_tree.png" alt="File Tree" />
+    <p class="caption-top">App file structure - pretty simple, eh?</p>
+  </div>
+
   <div>
     <button
       class="btn btn-primary btn-lg shadow-sm"
