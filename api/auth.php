@@ -11,14 +11,14 @@ function handleAuthRequest(): void
 
   // Login and logout both mutate the session, so require POST and CSRF token.
   if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-      http_response_code(405);
-      exit('POST required.');
+    http_response_code(405);
+    exit('POST required.');
   }
 
   $token = $_POST['csrf_token'] ?? '';
   if (!is_string($token) || !isValidCsrfToken($token)) {
-      http_response_code(403);
-      exit('Invalid request token.');
+    http_response_code(403);
+    exit('Invalid request token.');
   }
 
   // Determine the requested authentication action.
@@ -42,7 +42,14 @@ function handleAuthRequest(): void
     $_SESSION['admin_authenticated'] = true;
 
     // Reload the app shell; its router will now load the dashboard.
-    header('HX-Redirect: index.html#admin');
+    echo '
+      <div
+        hx-get="api/backend.php?action=page&amp;page=admin"
+        hx-trigger="load"
+        hx-target="#main-content"
+        hx-swap="innerHTML"
+        hx-push-url="#admin"
+      ></div>';
     exit;
   }
 
@@ -53,7 +60,14 @@ function handleAuthRequest(): void
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
     // Return to the public landing page after ending the admin session.
-    header('HX-Redirect: index.html#home');
+    echo '
+      <div
+        hx-get="api/backend.php?action=page&amp;page=home"
+        hx-trigger="load"
+        hx-target="#main-content"
+        hx-swap="innerHTML"
+        hx-push-url="#home"
+      ></div>';
     exit;
   }
 
@@ -63,7 +77,7 @@ function handleAuthRequest(): void
 
 // Including this file provides helpers; requesting it runs the endpoint.
 if (realpath($_SERVER['SCRIPT_FILENAME'] ?? '') === realpath(__FILE__)) {
-    handleAuthRequest();
+  handleAuthRequest();
 }
 
 // ----------------------------------------
@@ -73,27 +87,27 @@ if (realpath($_SERVER['SCRIPT_FILENAME'] ?? '') === realpath(__FILE__)) {
 // Initializes the application session and ensures a CSRF token is available.
 function startAppSession(): void
 {
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_set_cookie_params([
-            'httponly' => true,
-            'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
-            'samesite' => 'Lax',
-        ]);
-        session_start();
-    }
+  if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_set_cookie_params([
+      'httponly' => true,
+      'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+      'samesite' => 'Lax',
+    ]);
+    session_start();
+  }
 
-    $_SESSION['csrf_token'] ??= bin2hex(random_bytes(32));
+  $_SESSION['csrf_token'] ??= bin2hex(random_bytes(32));
 }
 
 // Checks if the current session belongs to an authenticated admin user.
 function isAdminAuthenticated(): bool
 {
-    return !empty($_SESSION['admin_authenticated']);
+  return !empty($_SESSION['admin_authenticated']);
 }
 
 // Validates the provided CSRF token against the one stored in the session.
 function isValidCsrfToken(string $token): bool
 {
-    return isset($_SESSION['csrf_token'])
-        && hash_equals($_SESSION['csrf_token'], $token);
+  return isset($_SESSION['csrf_token'])
+    && hash_equals($_SESSION['csrf_token'], $token);
 }
