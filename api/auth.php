@@ -88,9 +88,11 @@ if (realpath($_SERVER['SCRIPT_FILENAME'] ?? '') === realpath(__FILE__)) {
 function startAppSession(): void
 {
   if (session_status() !== PHP_SESSION_ACTIVE) {
+    // Determine if connection is secure (HTTPS). Allow HTTP only for local testing, not production.
+    $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
     session_set_cookie_params([
       'httponly' => true,
-      'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+      'secure' => $isHttps,
       'samesite' => 'Lax',
     ]);
     session_start();
