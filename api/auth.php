@@ -40,13 +40,10 @@ function handleAuthRequest(): void
 
     session_regenerate_id(true);
     $_SESSION['admin_authenticated'] = true;
-    echo '
-      <button class="btn btn-success"
-        hx-get="api/backend.php?action=page&amp;page=admin"
-        hx-target="#main-content" hx-push-url="#admin">
-        Open dashboard
-      </button>';
-    return;
+
+    // Reload the app shell; its router will now load the dashboard.
+    header('HX-Redirect: index.html#admin');
+    exit;
   }
 
   // Logout action handler
@@ -54,13 +51,10 @@ function handleAuthRequest(): void
     unset($_SESSION['admin_authenticated']);
     session_regenerate_id(true);
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    echo '
-      <button class="btn btn-primary"
-        hx-get="api/backend.php?action=page&amp;page=admin"
-        hx-target="#main-content" hx-push-url="#admin">
-        Sign in again
-      </button>';
-    return;
+
+    // Return to the public landing page after ending the admin session.
+    header('HX-Redirect: index.html#home');
+    exit;
   }
 
   http_response_code(404);

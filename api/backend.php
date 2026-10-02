@@ -271,7 +271,7 @@ switch ($action) {
         http_response_code(404);
         echo '<div class="alert alert-danger">Unknown action.</div>';
         break;
-    }
+}
 
 // Helper function to obfuscate email addresses for demo DB record display
 function obfuscateEmail($email) {

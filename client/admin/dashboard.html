@@ -1,5 +1,6 @@
 <!-- client/admin/dashboard.html -->
 <div
+  hx-history="false"
   class="card p-5 border-primary bg-light shadow-sm rounded-3 animate-fade-in"
 >
   <h1 class="fw-bold text-primary mb-3">Administrative Dashboard</h1>
@@ -33,14 +34,6 @@
   </section>
 
   <div class="mt-4">
-    <button
-      class="btn btn-outline-secondary"
-      hx-get="api/backend.php?action=page&amp;page=home"
-      hx-target="#main-content"
-      hx-push-url="#home"
-    >
-      Return Home
-    </button>
     <form
       hx-post="api/auth.php?action=logout"
       hx-target="#main-content"
