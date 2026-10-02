@@ -1,0 +1,28 @@
+<div class="card p-4 shadow-sm">
+  <h1 class="h3">Admin demo sign-in</h1>
+  <p>Demo login: <code>admin</code><br />Demo password: <code>pw</code></p>
+
+  <form
+    hx-post="api/auth.php?action=login"
+    hx-target="#auth-result"
+    hx-swap="innerHTML"
+  >
+    <input type="hidden" name="csrf_token" value="<!-- CSRF_TOKEN -->" />
+
+    <label class="form-label" for="username">Login</label>
+    <input class="form-control mb-3" id="username" name="username" required />
+
+    <label class="form-label" for="password">Password</label>
+    <input
+      class="form-control mb-3"
+      id="password"
+      name="password"
+      type="password"
+      required
+    />
+
+    <button class="btn btn-primary" type="submit">Sign in</button>
+  </form>
+
+  <div id="auth-result" class="mt-3"></div>
+</div>

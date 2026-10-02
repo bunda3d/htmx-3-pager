@@ -1,29 +1,23 @@
 <?php
-// Allow both POST and htmx-driven navigational GET requests
+
+// ----------------------------------------
+// API: Backend Operations
+// ----------------------------------------
+
+// Reject requests that aren't valid backend actions. Allow POST & GET requests.
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_GET['action'])) {
     header("HTTP/1.1 403 Forbidden");
     exit("Direct entry access not permitted.");
 }
 
+// Load shared auth helpers and initialize the session before using $_SESSION.
+require_once __DIR__ . '/auth.php';
+startAppSession();
+
+// Retrieve the requested action from the query parameters.
 $action = $_GET['action'] ?? '';
 
-// Helper function to obfuscate emails for DB storage proof section
-function obfuscateEmail($email) {
-    $parts = explode('@', $email);
-    if(count($parts) < 2) { return $email; }
-    $name  = $parts[0];
-    $domain = $parts[1];
-    
-    $obscuredName = (strlen($name) > 3)
-        ? substr($name, 0, 3) . '***'
-        : substr($name, 0, 1) . '***';
-    $obscuredDomain = (strlen($domain) > 4)
-        ? substr($domain, 0, 2) . '***' . substr($domain, -3)
-        : $domain;
-    
-    return $obscuredName . '@' . $obscuredDomain;
-}
-
+// Action Handler
 switch ($action) {
     // Router → Page Fragment Loader
     case 'page':
@@ -31,18 +25,35 @@ switch ($action) {
             'home' => __DIR__ . '/../client/home.html',
             'about' => __DIR__ . '/../client/about.html',
             'contact' => __DIR__ . '/../client/contact.html',
+            'auth' => __DIR__ . '/../client/admin/auth.html',
             'admin' => __DIR__ . '/../client/admin/dashboard.html',
         ];
 
+        // Determine page to load based on parameter; DEFAULT: 'home'
         $page = $_GET['page'] ?? 'home';
 
+        // Serve only known fragments (from the $pages array); never use a request value as a file path.
         if (!isset($pages[$page])) {
             http_response_code(404);
             echo '<div class="alert alert-danger">Page not found.</div>';
             break;
         }
 
-        readfile($pages[$page]);
+        // FOR ADMIN PAGES: Redirect to auth page if admin is not authenticated
+        if ($page === 'admin' && !isAdminAuthenticated()) {
+            $page = 'auth';
+        }
+
+        // Load and render the requested page with CSRF token replacement
+        $html = file_get_contents($pages[$page]);
+        $csrfToken = htmlspecialchars(
+            $_SESSION['csrf_token'],
+            ENT_QUOTES | ENT_SUBSTITUTE,
+            'UTF-8'
+        );
+
+        // Substitute the session token into auth-protected fragments.
+        echo str_replace('<!-- CSRF_TOKEN -->', $csrfToken, $html);
         break;
     // Dynamic Timestamp Generation
     case 'get_year':
@@ -122,6 +133,14 @@ switch ($action) {
 
     // Admin Dashboard Mockup Teaser
     case 'admin_data':
+        // Protect the data request; the '/admin' page gate alone is not authorization.
+        if (!isAdminAuthenticated()) {
+            http_response_code(401);
+            echo '<div class="alert alert-danger">Sign in to view records.</div>';
+            break;
+        }
+
+        // Sanitize and validate the requested page number for pagination.
         $requestedPage = filter_var(
             $_GET['p'] ?? 1,
             FILTER_VALIDATE_INT
@@ -132,6 +151,7 @@ switch ($action) {
         $totalLeads = 0;
         $databaseError = false;
 
+        // Ensure the page number is within valid bounds.
         try {
             $dbPath = __DIR__ . '/../db/threepager.db';
             $db = new PDO("sqlite:$dbPath");
@@ -158,15 +178,17 @@ switch ($action) {
             $databaseError = true;
         }
 
+        // Handle the case where the database could not be read.
         if ($databaseError) {
             http_response_code(500);
             echo '
                 <div class="alert alert-danger mb-0">
-                    Could not read the leads database. Check that PHP has PDO SQLite enabled and that the database is accessible.
+                    Could not read the database. Check that PHP has PDO SQLite enabled and that the database is accessible.
                 </div>';
             break;
         }
 
+        // Handle the case where no leads were found.
         if (empty($leads)) {
             echo '<div class="alert alert-warning">
                     No records found yet. Submit the contact form to see records here.
@@ -174,6 +196,7 @@ switch ($action) {
             break;
         }
 
+        // Display the sales leads in a table.
         echo '
             <div class="table-responsive bg-white p-3 rounded border">
                 <table class="table table-striped table-hover mb-0">
@@ -249,3 +272,20 @@ switch ($action) {
         echo '<div class="alert alert-danger">Unknown action.</div>';
         break;
     }
+
+// Helper function to obfuscate email addresses for demo DB record display
+function obfuscateEmail($email) {
+    $parts = explode('@', $email);
+    if(count($parts) < 2) { return $email; }
+    $name  = $parts[0];
+    $domain = $parts[1];
+    
+    $obscuredName = (strlen($name) > 3)
+        ? substr($name, 0, 3) . '***'
+        : substr($name, 0, 1) . '***';
+    $obscuredDomain = (strlen($domain) > 4)
+        ? substr($domain, 0, 2) . '***' . substr($domain, -3)
+        : $domain;
+    
+    return $obscuredName . '@' . $obscuredDomain;
+}

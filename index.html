@@ -28,9 +28,10 @@
         <!-- Brand Logo from img/ folder -->
         <a
           class="navbar-brand d-flex align-items-center"
-          href="#"
-          hx-get="client/home.html"
+          href="#home"
+          hx-get="api/backend.php?action=page&amp;page=home"
           hx-target="#main-content"
+          hx-push-url="#home"
         >
           <img
             src="img/logo.png"
