@@ -1,30 +1,53 @@
 <div class="card p-5 shadow-sm border-0 bg-white rounded-3 animate-fade-in">
-  <h1 class="display-5 text-dark fw-bold mb-3">About the Architecture</h1>
+  <h1 class="display-5 text-dark fw-bold mb-3">About this demo</h1>
+
   <p class="lead text-muted">
-    Why engineer a massive tech layer when three files can change the world?
-    This application acts as a blueprint demonstration for your blog readers.
+    This proof of concept explores a practical question: how much interactivity
+    does a small website need, and how simply can it be built?
   </p>
 
   <div class="row g-4 mt-2">
     <div class="col-md-6">
-      <div class="p-4 bg-light rounded border">
-        <h4 class="text-primary fw-semibold">💾 Persistent Capability</h4>
-        <p class="small text-muted mb-0">
-          The site hooks into a tiny, local <code>threepager.db</code> file.
-          Data mutations can execute concurrently safely without system bloat or
-          expensive cloud billing overhead.
+      <section class="p-4 bg-light rounded border h-100">
+        <h2 class="h5 text-primary fw-semibold">🎯 A good fit</h2>
+        <p class="mb-0">
+          This approach may suit a small business, project, or product site that
+          needs a few pages, a contact form, and a modest amount of saved data.
         </p>
-      </div>
+      </section>
     </div>
+
     <div class="col-md-6">
-      <div class="p-4 bg-light rounded border">
-        <h4 class="text-success fw-semibold">⚡ Dynamic Scaling</h4>
-        <p class="small text-muted mb-0">
-          Need a feature update? You write normal HTML inside the server
-          templates. The frontend engine reads changes automatically without
-          forcing clients to compile asset packages.
+      <section class="p-4 bg-light rounded border h-100">
+        <h2 class="h5 text-primary fw-semibold">🧩 Why this stack</h2>
+        <p class="mb-0">
+          PHP handles requests, htmx loads HTML fragments, and SQLite stores
+          submissions in a database file. This keeps the demo’s structure
+          compact and avoids a frontend build step.
         </p>
-      </div>
+      </section>
+    </div>
+
+    <div class="col-md-6">
+      <section class="p-4 bg-light rounded border h-100">
+        <h2 class="h5 text-primary fw-semibold">💰 Cost and maintenance</h2>
+        <p class="mb-0">
+          PHP and SQLite are available with many hosting setups, which can keep
+          deployment needs modest. Actual cost depends on hosting, traffic,
+          backups, and support requirements.
+        </p>
+      </section>
+    </div>
+
+    <div class="col-md-6">
+      <section class="p-4 bg-light rounded border h-100">
+        <h2 class="h5 text-primary fw-semibold">⚖️ Trade-offs</h2>
+        <p class="mb-0">
+          htmx exchanges HTML rather than JSON, and SQLite is intended here for
+          modest workloads. A real deployment also needs protected access to
+          submitted records, backups, and appropriate data handling.
+        </p>
+      </section>
     </div>
   </div>
 </div>
