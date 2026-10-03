@@ -143,8 +143,8 @@ switch ($action) {
       exit;
     }
 
-    // Email dispatch trigger wrapper placeholder
-    $to = "hello@yourmom.com";
+    // Email dispatch placeholder
+    $to = "hello@yourmom.com"; // Replace with actual recipient email address
     $subject = "New PoC Lead Captured: " . $name;
     $body = "Name: $name\nEmail: $email\nPhone: $phone\nSales Call Request: " . ($sales ? 'Yes' : 'No') . "\n\nMessage:\n$message";
     @mail($to, $subject, $body, "From: webserver@domain.com");
