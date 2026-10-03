@@ -9,7 +9,7 @@ function handleAuthRequest(): void
 {
   startAppSession();
 
-  // Login and logout both mutate the session, so require POST and CSRF token.
+  // Login/logout form submissions are state-changing POSTs and require a valid CSRF token.
   if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     exit('POST required.');
@@ -26,12 +26,13 @@ function handleAuthRequest(): void
 
   // Login action handler
   if ($action === 'login') {
-    // DEMO ONLY: replace this check with a verified OIDC identity (or other secure authentication mechanism).
+    // Start DEMO ONLY check: replace with identity-provider verification, like OIDC (see README for more info).
     $user = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     $valid = is_string($user) && is_string($password)
       && hash_equals('admin', $user)
       && hash_equals('pw', $password);
+    // End DEMO ONLY check.
 
     if (!$valid) {
       echo '<div class="alert alert-danger">Login or password is incorrect.</div>';
@@ -90,6 +91,7 @@ function startAppSession(): void
   if (session_status() !== PHP_SESSION_ACTIVE) {
     // Determine if connection is secure (HTTPS). Allow HTTP only for local testing, not production.
     $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+
     session_set_cookie_params([
       'httponly' => true,
       'secure' => $isHttps,
