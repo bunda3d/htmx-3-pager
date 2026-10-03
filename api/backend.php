@@ -143,11 +143,28 @@ switch ($action) {
       exit;
     }
 
-    // Email dispatch placeholder
-    $to = "hello@yourmom.com"; // Replace with actual recipient email address
+    // Email dispatch
+    $to = "admin@yourdomain.com"; // Replace with recipient email address
+    $from = "no-reply@yourdomain.com"; // Replace with sender email address
     $subject = "New PoC Lead Captured: " . $name;
-    $body = "Name: $name\nEmail: $email\nPhone: $phone\nSales Call Request: " . ($sales ? 'Yes' : 'No') . "\n\nMessage:\n$message";
-    @mail($to, $subject, $body, "From: webserver@domain.com");
+    $body = "
+      Name: $name\n
+      Email: $email\n
+      Phone: $phone\n
+      Sales Call Request: " . ($sales ? 'Yes' : 'No') . "\n\n
+      Message:\n$message
+    ";
+    // Send the email notification to the office admin.
+    $headers = "From: Website Notifications  <$from>\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $mailAccepted = mail($to, $subject, $body, $headers);
+
+    // Log result of mail() function to the server error log.
+    if (!$mailAccepted) {
+      error_log('Lead notification mail() returned false.');
+    } else {
+      error_log('Lead notification accepted by the local mail system.');
+    }
 
     echo '
       <div class="alert alert-success text-center p-4 shadow-sm mb-0">
@@ -298,7 +315,7 @@ switch ($action) {
         break;
 }
 
-// Helper function: obfuscate email addresses for demo DB record display
+// DEMO helper function: obfuscate email addresses for demo DB record display
 function obfuscateEmail(string $email): string {
     $parts = explode('@', $email);
     if(count($parts) < 2) { return $email; }
