@@ -4,26 +4,52 @@
   class="card p-5 border-primary bg-light shadow-sm rounded-3 animate-fade-in"
 >
   <h1 class="fw-bold text-primary mb-3">Administrative Dashboard</h1>
-  <h3>Wouldn't it be great to have an admin space here?</h3>
-  <p>I suppose we'd expect:</p>
+  <h2 class="h3 mb-3">Wouldn't it be great to have an admin space here?</h2>
+  <p class="lead">I suppose we'd expect:</p>
   <ul>
     <li>
-      Role-based access control (RBAC) system requiring auth form approval
+      Role-based access control (<abbr title="Role-Based Access Control"
+        >RBAC</abbr
+      >) system with Sign In authentication form
     </li>
     <li>Ability to view/export/print records added to the database</li>
     <li>
-      Maybe an option to send newsletter email files to a list of customers?
+      Maybe capability to upload and send newsletter email files to a list of
+      customers?
     </li>
   </ul>
-  <h4>
-    For now, let's settle for demonstrating we could review records from the
-    database after basic authentication.
-  </h4>
+  <h3 class="h4">
+    <span class="me-1" aria-hidden="true">🏆</span>For now, let's settle for
+    demonstrating that we can review database records behind a basic
+    authentication gate.
+  </h3>
+  <p class="lead">
+    Dashboards are made to be customized. Add the useful features you want and
+    make it your own.
+  </p>
   <hr class="my-4" />
 
+  <h3 class="h4">Contact Form Submissions</h3>
   <p class="lead">
-    Browse saved contact requests. Contact form submissions can also be sent as
-    emails (configure in <code>backend.php</code>).
+    Browse saved contact requests from the SQLite database's
+    <code>Leads</code> table.
+  </p>
+  <p class="p-2 border border-primary rounded">
+    Feel free to
+    <a
+      href="index.html#contact"
+      hx-get="api/backend.php?action=page&amp;page=contact"
+      hx-target="#main-content"
+      hx-push-url="#contact"
+      title="Go to Contact form"
+      >add a contact request</a
+    >
+    and see your record in the list
+    <i class="text-danger">(enter fake info!)</i>
+  </p>
+  <p class="lead">
+    Contact form submissions can also be emailed (configure in
+    <code>backend.php</code>).
   </p>
   <p class="small">Results are paginated at 25 records per page.</p>
   <section
