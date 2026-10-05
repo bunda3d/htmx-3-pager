@@ -1,12 +1,16 @@
 # Dead Simple 3-Pager Website App (with API & Database)
 
+Live Demo: [krisbunda.com/_apps/simple-3-pager](https://krisbunda.com/_apps/simple-3-pager/)
+
+## How did this start?
+
 I read an [article about JS library "htmx"](https://www.infoworld.com/article/4221778/get-started-with-htmx-4.html), which provides short code to insert into HTML markup to perform API actions; i.e., GET data from a DB.
 
 My initial reaction was 'Why would anyone need this when they can just write JavaScript AJAX calls?" I suppose it makes the HTML markup cleaner, but is that it? AND htmx expects API responses to be formatted in HTML (not JSON), so that's a possible friction point...
 
 ## Playing Devil's Advocate (with Myself)
 
-As I thought more about it, my internal monologue morphed into a dialogue, with the new voice playing Devil's Advocate. It was surfacing some compelling use cases for building a very lightweight, responsive frontend using htmx to call a php script serving as a micro backend... I began to see how this could do--with a handful of files and the simplest of tech stacks--what it takes so many more files, libraries, dependencies, technologies to do with, say, Angular or React.
+As I thought more about it, my internal monologue morphed into a dialogue, with the new voice playing Devil's Advocate. It was surfacing compelling use cases for building a very lightweight, responsive frontend using htmx to call a php script serving as a micro backend... I began to see how this could do--with a handful of files and the simplest of tech stacks--what it takes so many more files, libraries, dependencies, technologies to do with, say, Angular or React. Or any popular web framework, really.
 
 ## Use Case
 
