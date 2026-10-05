@@ -8,15 +8,38 @@
   <p class="lead text-muted">
     HTML fragments load seamlessly into a responsive shared page with navbar,
     enabling smooth navigation and dynamic content updates without a full page
-    reload. It demonstrates page navigation, a contact form, and SQLite-backed
-    record storage without a JavaScript build pipeline.
+    reload. It demonstrates routed page navigation, a contact form,
+    SQLite-backed record storage, an authenticated admin dashboard; while
+    requiring no JavaScript build pipeline.
   </p>
+  <h3 class="h4">
+    How is this simpler than established web app architectures?
+  </h3>
+  <p class="lead text-muted">
+    Unlike JavaScript frontend frameworks (Angular, React, etc.) or full-stack
+    frameworks (ASP.NET, Ruby on Rails, etc.), this approach avoids complex
+    build tools, bundlers, and heavy middleware wiring. Edit page content as
+    HTML; PHP handles server requests, and htmx swaps in responses. It produces
+    a responsive Single Page Application (SPA) User eXperience (UX) from a
+    dead-simple, maintainable architecture.
+  </p>
+  <div class="border border-primary rounded p-3">
+    <h4 class="h5 text-primary fw-bold">For your next small web project:</h4>
+    <h4 class="h5">
+      <span aria-hidden="true">🏗️</span>
+      Don't start from complexity.
+    </h4>
+    <h4 class="h5">
+      <span aria-hidden="true">🌱</span>
+      Build on simplicity.
+    </h4>
+  </div>
   <hr class="my-4" />
 
   <h2 class="text-primary mb-4">🛠️ Technology Stack</h2>
   <ul class="list-group list-group-flush mb-2">
     <h3 class="h4 text-primary border border-primary rounded p-2">
-      ⚙️&nbsp;Backend
+      <span class="me-1" aria-hidden="true">⚙️</span>Backend
     </h3>
     <li class="list-group-item bg-transparent px-0">
       <b>PHP</b> → API / Data Access / Business Logic
@@ -27,7 +50,7 @@
   </ul>
   <ul class="list-group list-group-flush mb-2">
     <h3 class="h4 text-primary border border-primary rounded p-2">
-      🖥️&nbsp;Frontend
+      <span class="me-1" aria-hidden="true">🖥️</span>Frontend
     </h3>
     <li class="list-group-item bg-transparent px-0"><b>HTML</b> → Markup</li>
     <li class="list-group-item bg-transparent px-0"><b>CSS</b> → Styling</li>
@@ -37,7 +60,7 @@
   </ul>
   <ul class="list-group list-group-flush mb-2">
     <h3 class="h4 text-primary border border-primary rounded p-2">
-      📦&nbsp;Libraries
+      <span class="me-1" aria-hidden="true">📦</span>Libraries
     </h3>
     <li class="list-group-item bg-transparent px-0">
       <b>htmx</b> → AJAX and DOM Manipulation
@@ -82,8 +105,8 @@
     <h2 class="text-primary mb-4">🗂️ File Structure</h2>
     <p class="border border-primary rounded p-2">
       🧱<strong> What a simple full-stack app looks like: </strong> the
-      frontend, backend, and database of this 3-pager are all here in this
-      handful of files.
+      frontend, backend, and database of this 3-pager are all here in a handful
+      of files.
     </p>
     <img class="img-fluid d-block" src="img/file_tree.png" alt="File Tree" />
     <p class="caption-top">App file structure - pretty simple, eh?</p>
