@@ -2,11 +2,11 @@
   <h1 class="display-5 text-dark fw-bold mb-3">About this demo</h1>
 
   <p class="lead text-muted">
-    This proof of concept explores a practical question: how much interactivity
-    does a small website need, and how simply can it be built?
+    This proof of concept explores practical questions: how much interactivity
+    does a small website need? And how simply can it be built?
   </p>
 
-  <div class="row g-4 mt-2">
+  <div class="row g-4 mt-2 mb-4">
     <div class="col-md-6">
       <section class="p-4 bg-light rounded border h-100">
         <h2 class="h5 text-primary fw-semibold">🎯 A good fit</h2>
@@ -49,5 +49,17 @@
         </p>
       </section>
     </div>
+  </div>
+  <hr class="my-4" />
+
+  <div class="d-flex justify-content-end">
+    <button
+      class="btn btn-primary btn-lg shadow-sm"
+      hx-get="api/backend.php?action=page&amp;page=contact"
+      hx-target="#main-content"
+      hx-push-url="#contact"
+    >
+      Explore the Contact Fragment &rarr;
+    </button>
   </div>
 </div>

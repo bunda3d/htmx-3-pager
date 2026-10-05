@@ -1,7 +1,7 @@
 <div class="card p-5 shadow-sm border-0 bg-white rounded-3 animate-fade-in">
   <h1 class="display-5 text-dark fw-bold mb-4">Get In Touch</h1>
 
-  <div id="form-wrapper">
+  <div id="form-wrapper" class="mb-4">
     <form
       hx-post="api/backend.php?action=submit_lead"
       hx-target="#form-wrapper"
@@ -69,9 +69,21 @@
       <!-- Targeted container for the phone field injection -->
       <div id="conditional-phone-container" class="mb-4"></div>
 
-      <button type="submit" class="btn btn-dark btn-lg w-100 shadow-sm">
-        Submit Secure Request
+      <button type="submit" class="btn btn-success btn-lg w-100 shadow-sm">
+        Submit
       </button>
     </form>
+  </div>
+  <hr class="my-4" />
+
+  <div class="d-flex justify-content-end">
+    <button
+      class="btn btn-primary btn-lg shadow-sm"
+      hx-get="api/backend.php?action=page&amp;page=admin"
+      hx-target="#main-content"
+      hx-push-url="#admin"
+    >
+      Explore the Admin Dashboard Fragment &rarr;
+    </button>
   </div>
 </div>

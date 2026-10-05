@@ -17,23 +17,27 @@
   </ul>
   <h4>
     For now, let's settle for demonstrating we could review records from the
-    database.
+    database after basic authentication.
   </h4>
-
   <hr class="my-4" />
+
   <p class="lead">
-    Browse saved contact requests. Results are paginated at 25 records per page.
+    Browse saved contact requests. Contact form submissions can also be sent as
+    emails (configure in <code>backend.php</code>).
   </p>
+  <p class="small">Results are paginated at 25 records per page.</p>
   <section
     id="dashboard-data"
+    class="mb-4"
     hx-get="api/backend.php?action=admin_data"
     hx-trigger="load"
     hx-swap="innerHTML"
   >
     <p class="text-muted">Loading records...</p>
   </section>
+  <hr class="my-4" />
 
-  <div class="mt-4">
+  <div class="d-flex justify-content-end">
     <form
       hx-post="api/auth.php?action=logout"
       hx-target="#main-content"

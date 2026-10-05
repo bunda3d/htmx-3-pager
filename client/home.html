@@ -1,16 +1,26 @@
 <div class="card p-5 shadow-sm border-0 bg-white rounded-3 animate-fade-in">
-  <h1 class="display-4 text-primary fw-bold mb-3">✨ Simple is Beautiful</h1>
+  <h1 class="h2 display-4 text-primary fw-bold mb-3">
+    <span class="me-1" aria-hidden="true">✨</span>Beautifully Simple: A Mini
+    Stack Web App Demo
+  </h1>
   <h2 class="h3 mb-4">
-    This <abbr title="Proof of Concept">PoC</abbr> web app demonstrates a
-    "3-pager" lightweight <abbr title="Single Page Application">SPA</abbr> with
+    This "3-pager" proof-of-concept demonstrates a lightweight web app with
+    <abbr title="Single Page Application">SPA</abbr>-style navigation on a
     minimal tech stack
   </h2>
+  <h3 class="h4">Three-Pager?</h3>
+  <p class="lead text-muted">
+    A 3-page website includes the basic pages a small site needs: <b>Home</b>,
+    <b>About</b>, and <b>Contact</b>. It emphasizes simplicity and
+    maintainability, making it ideal for small projects.
+  </p>
+  <h3 class="h4">What am I looking at here?</h3>
   <p class="lead text-muted">
     HTML fragments load seamlessly into a responsive shared page with navbar,
     enabling smooth navigation and dynamic content updates without a full page
     reload. It demonstrates routed page navigation, a contact form,
-    SQLite-backed record storage, an authenticated admin dashboard; while
-    requiring no JavaScript build pipeline.
+    SQLite-backed record storage, an auth-gated admin dashboard; requiring no
+    JavaScript build pipeline.
   </p>
   <h3 class="h4">
     How is this simpler than established web app architectures?
@@ -111,8 +121,9 @@
     <img class="img-fluid d-block" src="img/file_tree.png" alt="File Tree" />
     <p class="caption-top">App file structure - pretty simple, eh?</p>
   </div>
+  <hr class="my-4" />
 
-  <div>
+  <div class="d-flex justify-content-end">
     <button
       class="btn btn-primary btn-lg shadow-sm"
       hx-get="api/backend.php?action=page&amp;page=about"
