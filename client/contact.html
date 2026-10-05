@@ -1,12 +1,14 @@
-<div class="card p-5 shadow-sm border-0 bg-white rounded-3 animate-fade-in">
+<div
+  class="card py-5 px-3 px-md-5 shadow-sm border-0 bg-white rounded-3 animate-fade-in"
+>
   <h1 class="display-5 text-dark fw-bold mb-4">Get In Touch</h1>
 
-  <div id="form-wrapper" class="mb-4">
+  <div id="form-wrapper" class="mb-4 row">
     <form
       hx-post="api/backend.php?action=submit_lead"
       hx-target="#form-wrapper"
       hx-swap="outerHTML"
-      class="needs-validation"
+      class="needs-validation col-12 col-md-8 col-lg-6 me-md-auto"
     >
       <div class="mb-3">
         <label for="contact-name" class="form-label fw-semibold"
