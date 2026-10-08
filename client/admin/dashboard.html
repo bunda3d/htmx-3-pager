@@ -5,7 +5,7 @@
 >
   <h1 class="fw-bold text-primary mb-3">Administrative Dashboard</h1>
   <h2 class="h3 mb-3">Wouldn't it be great to have an admin space here?</h2>
-  <p class="lead">I suppose we'd expect:</p>
+  <p class="lead">Features we might expect:</p>
   <ul>
     <li>
       Role-based access control (<abbr title="Role-Based Access Control"
@@ -14,16 +14,19 @@
     </li>
     <li>Ability to view/export/print records added to the database</li>
     <li>
-      Maybe capability to upload and send newsletter email files to a list of
+      Capability to upload and send newsletter email files to a list of
       customers?
     </li>
   </ul>
-  <h3 class="h4">
-    <span class="me-1" aria-hidden="true">🏆</span>For now, let's settle for
-    demonstrating that we can review database records behind a basic
-    authentication gate.
-  </h3>
-  <p class="lead">
+  <div>
+    <!-- prettier-ignore -->
+    <h3 class="h4">
+      <span class="text-primary">For now, let's settle for demonstrating:</span>
+      <br /><span class="me-1" aria-hidden="true">✅</span>we can display database records 
+      <br /><span class="me-1" aria-hidden="true">✅</span>behind a basic authentication gate
+    </h3>
+  </div>
+  <p class="lead text-body-emphasis mb-0">
     Dashboards are made to be customized. Add the useful features you want and
     make it your own.
   </p>
@@ -31,8 +34,11 @@
 
   <h3 class="h4">Contact Form Submissions</h3>
   <p class="lead">
-    Browse saved contact requests from the SQLite database's
+    Browse saved contact requests from the database's
     <code>Leads</code> table.
+    <br />
+    Contact form submissions can also be emailed (configure in
+    <code>backend.php</code>).
   </p>
   <p class="p-2 border border-primary rounded">
     Feel free to
@@ -47,10 +53,7 @@
     and see your record in the list
     <i class="text-danger">(enter fake info!)</i>
   </p>
-  <p class="lead">
-    Contact form submissions can also be emailed (configure in
-    <code>backend.php</code>).
-  </p>
+
   <p class="small">Results are paginated at 25 records per page.</p>
   <section
     id="dashboard-data"
