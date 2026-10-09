@@ -1,6 +1,7 @@
 # Dead Simple 3-Pager Website App (with API & Database)
 
 Live Demo: [krisbunda.com/_apps/simple-3-pager](https://krisbunda.com/_apps/simple-3-pager/)
+Project Blog: [krisbunda.com/blog/a-dead-simple-web-app-for-small-projects/](https://krisbunda.com/blog/2026/10/08/a-dead-simple-web-app-for-small-projects/)
 
 ## How did this start?
 
